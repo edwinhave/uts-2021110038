@@ -41,14 +41,6 @@
                 <a class="p-2 link-secondary" href="/contact-us">Kontak</a>
                 <a class="p-2 link-secondary" href="/transactions/create">Transaksi</a>
                 <a class="p-2 link-secondary" href="/transcations">Store</a>
-                <a class="p-2 link-secondary" href="#">Culture</a>
-                <a class="p-2 link-secondary" href="#">Business</a>
-                <a class="p-2 link-secondary" href="#">Politics</a>
-                <a class="p-2 link-secondary" href="#">Opinion</a>
-                <a class="p-2 link-secondary" href="#">Science</a>
-                <a class="p-2 link-secondary" href="#">Health</a>
-                <a class="p-2 link-secondary" href="#">Style</a>
-                <a class="p-2 link-secondary" href="#">Travel</a>
             </nav>
         </div>
     </div>
