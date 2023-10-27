@@ -3,11 +3,8 @@
 @section('title', 'Articles List')
 
 @section('content')
-    <div class="mt-4 p-5 bg-black text-white rounded">
-        <h1>All Articles</h1>
-    </div>
-    <div class="mt-4 p-5 bg-black text-white rounded">
-        <h1>All Articles</h1>
+    <div class="mt-4 p-5 bg-info text-white rounded">
+        <h1 style="font-family: 'Adventure', 'Gill Sans MT', Calibri, 'Trebuchet MS',">Semua Transaksi</h1>
         <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-sm">Tambah transaksi</a>
     </div>
 
@@ -27,6 +24,8 @@
                     <th scope="col">Category</th>
                     <th scope="col">Notes</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Create</th>
+                    <th scope="col">Update</th>
                 </tr>
             </thead>
             <tbody>

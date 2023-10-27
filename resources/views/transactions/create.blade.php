@@ -3,7 +3,7 @@
 @section('title', 'Add New Transcation')
 
 @section('content')
-    <div class="mt-4 p-5 bg-black text-white rounded">
+    <div class="mt-4 p-5 bg-info text-white rounded">
         <h1>Transaksi</h1>
     </div>
 
@@ -54,7 +54,7 @@
                     <label for="notes" class="form-label">Notes</label>
                     <textarea class="form-control" rows="10" name="notes">{{ old('notes') }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Save</button>
+                <button type="submit" class="btn btn-success btn-block">Save</button>
             </form>
         </div>
     </div>

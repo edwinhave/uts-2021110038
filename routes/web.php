@@ -42,7 +42,8 @@ Route::get('/transactions', [TransactionController::class, 'index'])->name('tran
 Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 Route::get('/transactions/index', [TransactionController::class, 'show'])->name('transactions.show');
+Route::resource('transactions', TransactionController::class);
 
 Route::get('/transactions/{list}', [TransactionController::class, 'show'])->name('transactions.show');
-Route::patch('/transactions/{transaction}', [TransactionController::class, 'update'])->name('transactions.update');
-Route::delete('/transactions/{transaction)', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+Route::patch('/transactions/{list}}', [TransactionController::class, 'update'])->name('transactions.update');
+Route::delete('/transactions/{list})', [TransactionController::class, 'destroy'])->name('transactions.destroy');

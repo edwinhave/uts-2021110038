@@ -94,6 +94,16 @@
         </div>
         <div class="col-lg-2 col-md-4 col-sm-12">
             <div class="card my-2">
+                <img src="https://media.licdn.com/dms/image/C5603AQEhRQcqAvaZzQ/profile-displayphoto-shrink_800_800/0/1643180813425?e=1703721600&v=beta&t=jJJGeqwWWHB-CDZcrCeEwQtccARtPgs1_GXSMhLGUqo"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Muhamad Ardiansyah</h5>
+                    <p class="card-text">Mahasiswa</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12">
+            <div class="card my-2">
                 <img src="https://media.licdn.com/dms/image/D5635AQGJAgZbJLMOMQ/profile-framedphoto-shrink_800_800/0/1675468382773?e=1698908400&v=beta&t=0NQmHpWVUwTdJV15tpEC4J5zVKE7ggwZXurBYnTZW4s"
                     class="card-img-top">
                 <div class="card-body">

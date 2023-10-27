@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -14,9 +13,26 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        // Mengambil transaksi dengan paginasi setiap 10 data
+        $transactions = Transaction::orderBy('created_at', 'desc')->paginate(10);
 
-        $transaction = Transaction::paginate(10);
-        return view('transactions.index', compact('transaction'));
+        // Menghitung saldo total (total income - total expense)
+        $totalIncome = $transactions->where('type', 'income')->sum('amount');
+        $totalExpense = $transactions->where('type', 'expense')->sum('amount');
+        $balance = $totalIncome - $totalExpense;
+
+        // Menghitung jumlah transaksi income dan expense
+        $numIncomeTransactions = $transactions->where('type', 'income')->count();
+        $numExpenseTransactions = $transactions->where('type', 'expense')->count();
+
+        return view('transactions.index', [
+            'transactions' => $transactions,
+            'balance' => $balance,
+            'totalIncome' => $totalIncome,
+            'totalExpense' => $totalExpense,
+            'numIncomeTransactions' => $numIncomeTransactions,
+            'numExpenseTransactions' => $numExpenseTransactions,
+        ]);
     }
 
     /**
@@ -32,20 +48,20 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validate = $request->validate([
-            'amount' => 'required|numeric|min:3|max:9999999',
-            'type' => 'required|in:Income,Expense',
+        $validated = $request->validate([
+            'amount' => 'required|numeric|min:3|max:99999999999.99',
+            'type' => 'required|string',
             'category' => 'required|string',
             'notes' => 'required|string',
         ]);
+        $transaction = Transaction::create([
+            'amount' => $validated['amount'],
+            'type' => $validated['type'],
+            'category' => $validated['category'],
+            'notes' => $validated['notes'],
 
-        $transaction = Transaction::create([[
-            'amount' => $validate['amount'],
-            'type' => $validate['type'],
-            'category' => $validate['category'],
-            'notes' => $validate['notes'],
-        ]]);
+        ]);
+
         return redirect()->route('transactions.index')->with('success', 'Transaction added successfully.');
     }
 
@@ -71,31 +87,19 @@ class TransactionController extends Controller
     public function update(Request $request, Transaction $transaction)
     {
         $validated = $request->validate([
-            'title' => 'required|string|min:3|max:255',
-            'body' => 'required|string',
+            'amount' => 'required|numeric|min:3|max:99999999999.99',
+            'type' => 'required|string',
+            'category' => 'required|string',
+            'notes' => 'required|string',
         ]);
-
-        if ($request->hasFile('image')) {
-
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imagePath = $request->file('image')->store('public/images');
-
-            if ($transaction->image) {
-                Storage::delete($transaction->image);
-            }
-
-            $validated['image'] = $imagePath;
-        }
 
         $transaction->update([
             'amount' => $validated['amount'],
             'type' => $validated['type'],
-            'published_at' => $request->has('is_published') ? Carbon::now() : null,
-            // 'image' => $validated['image'] ?? $transaction->image,
+            'category' => $validated['category'],
+            'notes' => $validated['notes'],
         ]);
-        return redirect()->route('transcations.index')->with('success', 'Transaction updated successfully.');
+        return redirect()->route('transactions.index')->with('success', 'transaction updated successfully.');
     }
 
     /**
@@ -104,6 +108,6 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         $transaction->delete();
-        return redirect()->route('transactions.index')->with('success', 'Transaction is deleted successfully.');
+        return redirect()->route('transactions.index')->with('success', 'Transaction deleted successfully.');
     }
 }
