@@ -50,7 +50,7 @@
     <div class="row my-4">
         <div class="col-lg-2 col-md-4 col-sm-12">
             <div class="card my-2">
-                <img src="https://media.licdn.com/dms/image/D5603AQHkO83SU-RfRA/profile-displayphoto-shrink_800_800/0/1692174051552?e=1703721600&v=beta&t=SZlmbynV3WCiphyATBAdDQnhbToA9ouEMSRZQhZ7cmo"
+                <img src="https://media.licdn.com/dms/image/D4E03AQF3sfIxwhwSOA/profile-displayphoto-shrink_800_800/0/1698308721002?e=1703721600&v=beta&t=Kr5MO_n1dGl6_wr_UDKPI2_E-aMflVUu0ONZBVXLicI"
                     class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">Edwin</h5>
@@ -89,6 +89,16 @@
                 <div class="card-body">
                     <h5 class="card-title">Handy Kusuma</h5>
                     <p class="card-text">Frontend Developer</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12">
+            <div class="card my-2">
+                <img src="https://media.licdn.com/dms/image/D5635AQGJAgZbJLMOMQ/profile-framedphoto-shrink_800_800/0/1675468382773?e=1698908400&v=beta&t=0NQmHpWVUwTdJV15tpEC4J5zVKE7ggwZXurBYnTZW4s"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Henry Bagus</h5>
+                    <p class="card-text">Backend Developer</p>
                 </div>
             </div>
         </div>

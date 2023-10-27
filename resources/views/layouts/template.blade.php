@@ -18,7 +18,7 @@
                     <a class="link-secondary" href="#">Subscribe</a>
                 </div>
                 <div class="col-4 text-center">
-                    <a class="blog-header-logo text-dark" href="#">Garam-media</a>
+                    <a class="blog-header-logo text-dark" href="/">Garam-media</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <a class="link-secondary" href="#" aria-label="Search">
@@ -37,10 +37,10 @@
 
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between">
-                <a class="p-2 link-secondary" href="/about">About</a>
-                <a class="p-2 link-secondary" href="/contact-us">Contact</a>
-                <a class="p-2 link-secondary" href="#">Technology</a>
-                <a class="p-2 link-secondary" href="#">Design</a>
+                <a class="p-2 link-secondary" href="/about">Tentang</a>
+                <a class="p-2 link-secondary" href="/contact-us">Kontak</a>
+                <a class="p-2 link-secondary" href="/transactions/create">Transaksi</a>
+                <a class="p-2 link-secondary" href="/transcations">Store</a>
                 <a class="p-2 link-secondary" href="#">Culture</a>
                 <a class="p-2 link-secondary" href="#">Business</a>
                 <a class="p-2 link-secondary" href="#">Politics</a>

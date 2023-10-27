@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -12,7 +14,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+
+        $transaction = Transaction::paginate(10);
+        return view('transactions.index', compact('transaction'));
     }
 
     /**
@@ -20,7 +24,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transactions.create');
     }
 
     /**
@@ -28,7 +32,22 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'amount' => 'required|numeric',
+            'type' => 'required|in:Income,Expense',
+            'category' => 'required|string|in:Food & Drinks,Shopping,Charty,Housing,Insurance,Taxes,Transportation',
+            'notes' => 'required',
+            'published_at' => 'required',
+        ]);
+
+        $transaction = Transaction::create([[
+            'amount' => $validate['amount'],
+            'type' => $validate['type'],
+            'category' => $validate['category'],
+            'notes' => $validate['notes'],
+            'published_at' => $request->has('is_published') ? Carbon::now() : null,
+        ]]);
+        return $transaction;
     }
 
     /**
@@ -36,7 +55,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return redirect()->route('transcations.index')->with('success', 'Article added successfully.');
     }
 
     /**
@@ -44,7 +63,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return view('transactions.edit', compact('transaction'));
     }
 
     /**
@@ -52,7 +71,32 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|min:3|max:255',
+            'body' => 'required|string',
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imagePath = $request->file('image')->store('public/images');
+
+            if ($transaction->image) {
+                Storage::delete($transaction->image);
+            }
+
+            $validated['image'] = $imagePath;
+        }
+
+        $transaction->update([
+            'amount' => $validated['amount'],
+            'type' => $validated['type'],
+            'published_at' => $request->has('is_published') ? Carbon::now() : null,
+            // 'image' => $validated['image'] ?? $transaction->image,
+        ]);
+        return redirect()->route('transcations.index')->with('success', 'Transaction updated successfully.');
     }
 
     /**
@@ -60,6 +104,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return redirect()->route('transactions.index')->with('success', 'Transaction is deleted successfully.');
     }
 }
