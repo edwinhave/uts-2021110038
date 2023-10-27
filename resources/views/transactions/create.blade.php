@@ -54,10 +54,6 @@
                     <label for="notes" class="form-label">Notes</label>
                     <textarea class="form-control" rows="10" name="notes">{{ old('notes') }}</textarea>
                 </div>
-                <div class="form-check form-switch mb-3">
-                    <label class="form-check-label" for="is_published">Publish?</label>
-                    <input class="form-check-input" type="checkbox" id="is_published" name="is_published">
-                </div>
                 <button type="submit" class="btn btn-primary btn-block">Save</button>
             </form>
         </div>

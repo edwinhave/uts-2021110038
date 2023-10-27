@@ -33,15 +33,22 @@
                 @forelse ($transactions as $transaction)
                     <tr>
                         <th scope="row">{{ $transaction->id }}</th>
-                        <td>{{ $transaction->amount }}</td>
+                        <td>
+                            <a href="{{ route('transactions.show', $transaction) }}">
+                                {{ $transaction->category }}
+                        </td>
+                        </a>
                         <td>{{ $transaction->type }}</td>
-                        <td>{{ $transaction->category }}</td>
-                        <td>{{ $transaction->notes }}</td>
+                        <td>{{ Str::limit($transaction->notes, 50, ' ...') }}</td>
+                        <td>{{ $transaction->amount }}</td>
+                        <td>{{ $transaction->created_at }}</td>
+                        <td>{{ $transaction->updated_at }}</td>
                         <td>
                             <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-primary btn-sm">
                                 Edit
                             </a>
-                            <form action="{{ route('transactions.destroy', $article) }}" method="POST" class="d-inline-block">
+                            <form action="{{ route('transactions.destroy', $transaction) }}" method="POST"
+                                class="d-inline-block">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm"

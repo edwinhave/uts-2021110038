@@ -32,12 +32,12 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+
         $validate = $request->validate([
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:3|max:9999999',
             'type' => 'required|in:Income,Expense',
-            'category' => 'required|string|in:Food & Drinks,Shopping,Charty,Housing,Insurance,Taxes,Transportation',
-            'notes' => 'required',
-            'published_at' => 'required',
+            'category' => 'required|string',
+            'notes' => 'required|string',
         ]);
 
         $transaction = Transaction::create([[
@@ -45,9 +45,8 @@ class TransactionController extends Controller
             'type' => $validate['type'],
             'category' => $validate['category'],
             'notes' => $validate['notes'],
-            'published_at' => $request->has('is_published') ? Carbon::now() : null,
         ]]);
-        return $transaction;
+        return redirect()->route('transactions.index')->with('success', 'Transaction added successfully.');
     }
 
     /**
@@ -55,7 +54,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        return redirect()->route('transcations.index')->with('success', 'Article added successfully.');
+        return view('transactions.show', compact('transaction'));
     }
 
     /**

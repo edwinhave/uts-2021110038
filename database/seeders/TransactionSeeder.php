@@ -14,20 +14,19 @@ class TransactionSeeder extends Seeder
     public function run(): void
     {
         $faker = \Faker\Factory::create();
-        // Buat 25 artikel dummy
         for ($i = 0; $i < 25; $i++) {
             $amount = $faker->randomFloat(2, 0, 1000);
             $type = $faker->randomElement(['Income', 'Expense']);
-            $category = $faker->randomElements(['Food & Drinks', 'Shopping', 'Charty', 'Housing', 'Insurance', 'Taxes', 'Transportation']);
+            $category = $faker->randomElement(['Food & Drinks', 'Shopping', 'Charty', 'Housing', 'Insurance', 'Taxes', 'Transportation']);
             $notes = $faker->paragraph(20);
             $created_at = $faker->dateTimeBetween('-3 months', 'now');
 
-            DB::table('transaction')->insert([
+            DB::table('transactions')->insert([
                 'amount' => $amount,
                 'type' => $type,
                 'category' => $category,
                 'notes' => $notes,
-                'published_at' => $created_at,
+                // 'published_at' => $created_at,
                 'created_at' => $created_at,
                 'updated_at' => $created_at,
             ]);

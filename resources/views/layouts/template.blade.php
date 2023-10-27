@@ -40,7 +40,7 @@
                 <a class="p-2 link-secondary" href="/about">Tentang</a>
                 <a class="p-2 link-secondary" href="/contact-us">Kontak</a>
                 <a class="p-2 link-secondary" href="/transactions/create">Transaksi</a>
-                <a class="p-2 link-secondary" href="/transcations">Store</a>
+                <a class="p-2 link-secondary" href="/transactions/index">Show</a>
             </nav>
         </div>
     </div>

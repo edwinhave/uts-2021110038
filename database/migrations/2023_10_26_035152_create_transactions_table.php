@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->float('amount')->default(0);
-            $table->string('type');
-            $table->string('category')->default('uncategorized');
-            $table->text('notes')->nullable();
+            $table->float('amount')->nullable()->default(0);
+            $table->string('type')->nullable();
+            $table->string('category')->nullable()->default('uncategorized');
+            $table->text('notes');
             $table->timestamps();
         });
     }
